@@ -20,7 +20,7 @@ soundfile
 
 **To train and test single speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
 
-# Generating Binaural RIR
+## Generating Binaural RIR
 
 To generate 50,000 RIRs run the follwing code. To generate different number of RIRs, change variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
 
@@ -28,6 +28,6 @@ To generate 50,000 RIRs run the follwing code. To generate different number of R
 python3 sim_binaural_ir.py
 ```
 
-# Augement Binaural Speech Dataset
+## Augement Binaural Speech Dataset
 Download VCTK or any clean speech dataset and divide into train,test and valid **e.g., corpus/train, corpus/test, corpus/valid**. Then make folder **output_speech**
 #
