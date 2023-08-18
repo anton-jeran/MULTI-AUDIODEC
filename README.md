@@ -57,8 +57,22 @@ bash submit_autoencoder.sh --stage 0 --tag_name "autoencoder/symAD_vctk_48000_ho
 We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 To run on different batch size, change **batch_size:** parameter (Line-193) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 
-To resume training on saved model (e.g., 200,000 steps) run the following command
+To resume training on saved model at particular step (e.g., 200,000 steps) run the following command
 
 ```
 bash submit_autoencoder.sh --stage 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
+
+After training for 200,000 steps, we freeze the encode, projector, quantizer and we only train decoder with adversarial loss. To replace the simple decoder with HiFi-GAN vocoder, run the following command
+
+```
+bash submit_codec_vctk.sh --start 1 --stop 2
+```
+
+If you want to resume training on saved HiFi-GAN vocoder at particular step (e.g., 380,000) run the following command
+
+```
+bash submit_codec_vctk.sh --start 3 --resumepoint 380000
+```
+
+
