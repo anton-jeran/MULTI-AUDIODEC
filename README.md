@@ -49,6 +49,16 @@ python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out ou
 
 ## Training our Multi_AudioDec with Metric Loss
 We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
+
 ```
 bash submit_autoencoder.sh --stage 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
+```
+
+We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+To run on different batch size, change **batch_size:** parameter (Line-193) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+
+To resume training on saved model (e.g., 200,000 steps) run the following command
+
+```
+bash submit_autoencoder.sh --stage 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
