@@ -32,7 +32,14 @@ python3 sim_binaural_ir.py
 ```
 
 ## Augement Binaural Speech Dataset
-Download VCTK or any clean speech dataset and divide into train,test and valid **e.g., corpus/train, corpus/test, corpus/valid**. Then make folder **output_speech** and run following command to augment binaural speech dataset
+Download VCTK or any clean speech dataset and divide into train,test and valid **e.g., corpus/train, corpus/test, corpus/valid**. To make clean speech of 2 seconds durations run the following command
+
+```
+python3 process_speech.py
+```
+
+
+Then make folder **output_speech** and run following command to augment binaural speech dataset
 
 ```
 python3 augment_binaural_speech.py --speech corpus/train/ --ir binaural/ --out output_speech/train --nthreads 16
