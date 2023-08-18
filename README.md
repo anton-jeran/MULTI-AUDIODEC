@@ -14,6 +14,9 @@ wavefile
 tqdm
 scipy
 soundfile
+librosa
+cupy-cuda11x
+torch_stoi
 ```
 
 # Single Speaker Binaural Speech
