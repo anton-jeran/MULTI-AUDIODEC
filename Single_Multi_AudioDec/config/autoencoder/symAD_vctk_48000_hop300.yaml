@@ -1,0 +1,238 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+#
+# Reference (https://github.com/kan-bayashi/ParallelWaveGAN/)
+
+
+###########################################################
+#                   DATA SETTING                          #
+###########################################################
+sampling_rate: &sampling_rate 48000
+gpus: '0,1,2,3'
+# gpus_gen: '0,1,2,3'
+# gpus_disc: '0,1,2,3'
+save_path: "Validation/"
+data:
+    clean_path: "corpus"
+    reverb_path: "output_speech"
+    rir_path: "binaural"
+    subset:
+        train: "train"
+        valid: "test"
+        test:  "valid"
+
+###########################################################
+#                   MODEL SETTING                         #
+###########################################################
+model_type: symAudioDec
+train_mode: autoencoder
+paradigm: efficient
+
+generator_params:
+    input_channels: 2
+    output_channels_rir: 2
+    output_channels_speech: 1
+    encode_channels: 16
+    decode_channels: 16
+    code_dim: 64
+    codebook_num: 8
+    codebook_size: 1024
+    bias: true
+    combine_enc_ratios: []
+    seperate_enc_ratios_speech: [2,4,8, 16, 32]
+    seperate_enc_ratios_rir: [2,4, 8, 12, 16, 32]
+    speech_dec_ratios: [32, 16, 8, 4, 2]
+    rir_dec_ratios: [256,128,64, 32, 16, 8]
+    combine_enc_strides: []
+    seperate_enc_strides_speech: [2,2,3, 5, 5]
+    seperate_enc_strides_rir: [2,2, 3, 5, 5, 5]
+    speech_dec_strides: [5, 5, 3, 2, 2]
+    rir_dec_strides: [5,5, 5, 4,3,  2]
+    mode: 'causal'
+    codec: 'audiodec'
+    projector: 'conv1d'
+    quantier: 'residual_vq'
+
+discriminator_params_speech:
+    scales: 3                              # Number of multi-scale discriminator.
+    scale_downsample_pooling: "AvgPool1d"  # Pooling operation for scale discriminator.
+    scale_downsample_pooling_params:
+        kernel_size: 4                     # Pooling kernel size.
+        stride: 2                          # Pooling stride.
+        padding: 2                         # Padding size.
+    scale_discriminator_params:
+        in_channels: 1                     # Number of input channels.
+        out_channels: 1                    # Number of output channels.
+        kernel_sizes: [15, 41, 5, 3]       # List of kernel sizes.
+        channels: 128                    # Initial number of channels.
+        max_downsample_channels: 1024      # Maximum number of channels in downsampling conv layers.
+        max_groups: 16                     # Maximum number of groups in downsampling conv layers.
+        bias: true
+        downsample_scales: [4, 4, 4, 4, 1] # Downsampling scales.
+        nonlinear_activation: "LeakyReLU"  # Nonlinear activation.
+        nonlinear_activation_params:
+            negative_slope: 0.1
+    follow_official_norm: true             # Whether to follow the official norm setting.
+    periods: [2, 3, 5, 7, 11]              # List of period for multi-period discriminator.
+    period_discriminator_params:
+        in_channels: 1                    # Number of input channels.
+        out_channels: 1                    # Number of output channels.
+        kernel_sizes: [5, 3]               # List of kernel sizes.
+        channels: 32                       # Initial number of channels.
+        downsample_scales: [3, 3, 3, 3, 1] # Downsampling scales.
+        max_downsample_channels: 1024      # Maximum number of channels in downsampling conv layers.
+        bias: true                         # Whether to use bias parameter in conv layer."
+        nonlinear_activation: "LeakyReLU"  # Nonlinear activation.
+        nonlinear_activation_params:       # Nonlinear activation paramters.
+            negative_slope: 0.1
+        use_weight_norm: true              # Whether to apply weight normalization.
+        use_spectral_norm: false           # Whether to apply spectral normalization.
+
+discriminator_params_reverb_speech:
+    scales: 3                              # Number of multi-scale discriminator.
+    scale_downsample_pooling: "AvgPool1d"  # Pooling operation for scale discriminator.
+    scale_downsample_pooling_params:
+        kernel_size: 4                     # Pooling kernel size.
+        stride: 2                          # Pooling stride.
+        padding: 2                         # Padding size.
+    scale_discriminator_params:
+        in_channels: 1                     # Number of input channels.
+        out_channels: 1                    # Number of output channels.
+        kernel_sizes: [15, 41, 5, 3]       # List of kernel sizes.
+        channels: 128                    # Initial number of channels.
+        max_downsample_channels: 1024      # Maximum number of channels in downsampling conv layers.
+        max_groups: 16                     # Maximum number of groups in downsampling conv layers.
+        bias: true
+        downsample_scales: [4, 4, 4, 4, 1] # Downsampling scales.
+        nonlinear_activation: "LeakyReLU"  # Nonlinear activation.
+        nonlinear_activation_params:
+            negative_slope: 0.1
+    follow_official_norm: true             # Whether to follow the official norm setting.
+    periods: [2, 3, 5, 7, 11]              # List of period for multi-period discriminator.
+    period_discriminator_params:
+        in_channels: 1                    # Number of input channels.
+        out_channels: 1                    # Number of output channels.
+        kernel_sizes: [5, 3]               # List of kernel sizes.
+        channels: 32                       # Initial number of channels.
+        downsample_scales: [3, 3, 3, 3, 1] # Downsampling scales.
+        max_downsample_channels: 1024      # Maximum number of channels in downsampling conv layers.
+        bias: true                         # Whether to use bias parameter in conv layer."
+        nonlinear_activation: "LeakyReLU"  # Nonlinear activation.
+        nonlinear_activation_params:       # Nonlinear activation paramters.
+            negative_slope: 0.1
+        use_weight_norm: true              # Whether to apply weight normalization.
+        use_spectral_norm: false           # Whether to apply spectral normalization.
+# discriminator_params_rir:
+#     dis_dim: 96                              # Number of multi-scale discriminator.
+    
+###########################################################
+#                 METRIC LOSS SETTING                     #
+###########################################################
+use_mse_loss_rir: true                   # Whether to use Time-Domain MSE loss.
+use_edc_loss_rir: false                   # Whether to use Energy Decay Curve Loss
+use_mel_loss: true                   # Whether to use Mel-spectrogram loss.
+use_mel_loss_rir: true                   # Whether to use Mel-spectrogram loss.
+mel_loss_params:
+    fs: *sampling_rate
+    fft_sizes: [2048]
+    hop_sizes: [300]
+    win_lengths: [2048]
+    window: "hann_window"
+    num_mels: 80
+    fmin: 0
+    fmax: 24000
+    log_base: null
+
+use_stft_loss: false                 # Whether to use multi-resolution STFT loss.
+use_stft_loss_rir: false                 # Whether to use multi-resolution STFT loss.
+stft_loss_params:
+    fft_sizes: [1024, 2048, 512]     # List of FFT size for STFT-based loss.
+    hop_sizes: [120, 240, 50]        # List of hop size for STFT-based loss
+    win_lengths: [600, 1200, 240]    # List of window length for STFT-based loss.
+    window: "hann_window"            # Window function for STFT-based loss
+
+use_shape_loss: false                # Whether to use waveform shape loss.
+use_shape_loss_rir: false                # Whether to use waveform shape loss.
+shape_loss_params:
+    winlen: [300]
+
+###########################################################
+#                  ADV LOSS SETTING                       #
+###########################################################
+generator_adv_loss_params:
+    average_by_discriminators: false # Whether to average loss by #discriminators.
+
+discriminator_adv_loss_params:
+    average_by_discriminators: false # Whether to average loss by #discriminators.
+
+use_feat_match_loss: true
+feat_match_loss_params:
+    average_by_discriminators: false # Whether to average loss by #discriminators.
+    average_by_layers: false         # Whether to average loss by #layers in each discriminator.
+    include_final_outputs: false     # Whether to include final outputs in feat match loss calculation.
+
+###########################################################
+#                  LOSS WEIGHT SETTING                    #
+###########################################################
+lambda_adv: 1.0          # Loss weight of adversarial loss.
+lambda_feat_match: 2.0   # Loss weight of feat match loss.
+lambda_vq_loss: 1.0      # Loss weight of vector quantize loss.
+lambda_mel_loss: 45.0    # Loss weight of mel-spectrogram spectloss.
+lambda_stft_loss: 45.0   # Loss weight of multi-resolution stft loss.
+lambda_shape_loss: 45.0  # Loss weight of multi-window shape loss.
+lambda_mse_loss: 1.0  # Loss weight of time-domain mse loss.
+lambda_edc_loss: 10.0  # Loss weight of time-domain edc loss
+
+
+###########################################################
+#                  DATA LOADER SETTING                    #
+###########################################################
+batch_size: 16            # Batch size.
+batch_length: 96000          # Length of each audio in batch (training w/o adv). Make sure dividable by hop_size.
+adv_batch_length: 96000      # Length of each audio in batch (training w/ adv). Make sure dividable by hop_size.
+pin_memory: false            # Whether to pin memory in Pytorch DataLoader.
+num_workers: 4              # Number of workers in Pytorch DataLoader.
+
+###########################################################
+#             OPTIMIZER & SCHEDULER SETTING               #
+###########################################################
+generator_optimizer_type: Adam
+generator_optimizer_params:
+    lr: 1.0e-4
+    betas: [0.5, 0.9]
+    weight_decay: 0.0
+generator_scheduler_type: StepLR
+generator_scheduler_params:
+    step_size: 200000      # Generator's scheduler step size.
+    gamma: 1.0
+
+generator_grad_norm: -1
+discriminator_optimizer_type: Adam
+discriminator_optimizer_params:
+    lr: 2.0e-4
+    betas: [0.5, 0.9]
+    weight_decay: 0.0
+discriminator_scheduler_type: MultiStepLR
+discriminator_scheduler_params:
+    gamma: 0.5
+    milestones:
+        - 200000 
+        - 400000 
+        - 600000 
+        - 800000 
+discriminator_grad_norm: -1
+
+###########################################################
+#                    INTERVAL SETTING                     #
+###########################################################
+start_steps:                       # Number of steps to start training
+    generator: 0
+    discriminator: 200000 
+train_max_steps: 200000            # Number of training steps. (w/o adv)
+adv_train_max_steps: 700000         # Number of training steps. (w/ adv)
+save_interval_steps: 100000        # Interval steps to save checkpoint.
+eval_interval_steps: 10000        # Interval steps to evaluate the network.
+log_interval_steps: 100 #         # Interval steps to record the training log.
