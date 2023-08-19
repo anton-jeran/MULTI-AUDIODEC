@@ -51,7 +51,7 @@ python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out ou
 We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
 
 ```
-bash submit_autoencoder.sh --stage 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
+bash submit_autoencoder.sh --start 0 --stop 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
 
 We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
@@ -60,7 +60,7 @@ To run on different batch size, change **batch_size:** parameter (Line-193) in *
 To resume training on saved model at particular step (e.g., 200,000 steps) run the following command
 
 ```
-bash submit_autoencoder.sh --stage 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
+bash submit_autoencoder.sh --start 1 --stop 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
 
 After training for 200,000 steps, we freeze the encode, projector, quantizer and we only train decoder with adversarial loss. To replace the simple decoder with HiFi-GAN vocoder, run the following command
@@ -75,4 +75,9 @@ If you want to resume training on saved HiFi-GAN vocoder at particular step (e.g
 bash submit_codec_vctk.sh --start 3 --resumepoint 380000
 ```
 
+To test the trained model run the following command
+
+```
+bash submit_autoencoder.sh --start 2
+```
 
