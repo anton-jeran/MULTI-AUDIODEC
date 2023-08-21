@@ -20,8 +20,8 @@ data:
     rir_path: "binaural"
     subset:
         train: "train"
-        valid: "test"
-        test:  "valid"
+        valid: "valid"
+        test:  "test"
 
 ###########################################################
 #                   MODEL SETTING                         #
