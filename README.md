@@ -42,6 +42,7 @@ python3 process_speech.py
 Then make folder **output_speech** and run following command to augment binaural speech dataset
 
 ```
+mkdir output_speech
 python3 augment_binaural_speech.py --speech corpus/train/ --ir binaural/ --out output_speech/train --nthreads 16
 python3 augment_binaural_speech.py --speech corpus/valid/ --ir binaural/ --out output_speech/valid --nthreads 16
 python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out output_speech/test --nthreads 16
@@ -81,3 +82,54 @@ To test the trained model run the following command
 bash submit_autoencoder.sh --start 2
 ```
 
+
+# Two Speakers Overlapped Binaural Speech
+
+**To train and test single speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
+
+## Generating Binaural RIR
+
+To generate 50,000 RIRs run the follwing code. To generate different number of RIRs, change variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
+
+```
+python3 sim_binaural_ir.py
+```
+
+## Augement Binaural Speech Dataset
+Download VCTK or any clean speech dataset and divide into train,test and valid **e.g., corpus/train, corpus/test, corpus/valid**. To make clean speech of 2 seconds durations run the following command
+
+```
+python3 process_speech.py
+```
+
+
+Then make folder **output_speech** and run following command to augment binaural speech dataset
+
+```
+mkdir output_speech
+python3 augment_overlap_binaural_speech.py --speech corpus/train/ --ir binaural/ --out output_speech/train --nthreads 16
+python3 augment_overlap_binaural_speech.py --speech corpus/valid/ --ir binaural/ --out output_speech/valid --nthreads 16
+python3 augment_overlap_binaural_speech.py --speech corpus/test/ --ir binaural/ --out output_speech/test --nthreads 16
+```
+
+## Training our Multi_AudioDec with Metric Loss
+We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
+
+```
+bash submit_autoencoder.sh --start 0 --stop 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
+```
+
+We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+To run on different batch size, change **batch_size:** parameter (Line-193) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+
+To resume training on saved model at particular step (e.g., 200,000 steps) run the following command
+
+```
+bash submit_autoencoder.sh --start 1 --stop 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
+```
+
+To test the trained model run the following command
+
+```
+bash submit_autoencoder.sh --start 2
+```
