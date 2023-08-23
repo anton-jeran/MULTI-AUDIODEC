@@ -53,7 +53,7 @@ def generate_binaural(src_coord,lis_coord,room_coord):
 if __name__ == '__main__':
 
     nthreads = 16
-    num_irs =50 #000
+    num_irs =50000
     pbar = tqdm(total=num_irs)
     if(not os.path.exists("binaural/")):
         os.mkdir("binaural/")
