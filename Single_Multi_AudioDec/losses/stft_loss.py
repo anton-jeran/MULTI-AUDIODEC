@@ -165,9 +165,9 @@ class MultiResolutionSTFTLoss(torch.nn.Module):
         mag_loss = 0.0
         for f in self.stft_losses:
             sc_l, mag_l = f(x, y)
-            phase_loss += sc_l
+            # phase_loss += sc_l
             mag_loss += mag_l
-        phase_loss /= len(self.stft_losses)
+        # phase_loss /= len(self.stft_losses)
         mag_loss /= len(self.stft_losses)
         # print("mag_loss shape  ",mag_loss.shape)
 
