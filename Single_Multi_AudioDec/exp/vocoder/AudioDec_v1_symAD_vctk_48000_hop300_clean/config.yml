@@ -3,13 +3,13 @@ batch_length: 96000
 batch_size: 16
 config: config/vocoder/AudioDec_v1_symAD_vctk_48000_hop300_clean.yaml
 data:
-  clean_path: /cephfs/user/anton/Corpus96000
-  reverb_path: /cephfs/user/anton/Reverb_Corpus_new96000
-  rir_path: /cephfs/user/anton/pygsound/examples/binaural
+  clean_path: corpus
+  reverb_path: output_speech
+  rir_path: binaural
   subset:
-    test: clean_testset_wav
-    train: clean_trainset_84spk_wav
-    valid: clean_validset_84spk_wav
+    test: test
+    train: train
+    valid: valid
 disable_cudnn: 'False'
 discriminator_adv_loss_params:
   average_by_discriminators: false
