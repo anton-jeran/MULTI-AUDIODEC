@@ -4,13 +4,13 @@ batch_length: 96000
 batch_size: 16
 config: config/autoencoder/symAD_vctk_48000_hop300.yaml
 data:
-  clean_path: /cephfs/user/anton/Evaluation/Output_Samples/GroundTruth
-  reverb_path: /cephfs/user/anton/Evaluation/Output_Samples/GroundTruth
-  rir_path: /cephfs/user/anton/Evaluation/Output_Samples/GroundTruth
+  clean_path: corpus
+  reverb_path: output_speech
+  rir_path: binaural
   subset:
-    test: reverb
-    train: reverb
-    valid: reverb
+    test: test
+    train: train
+    valid: valid
 disable_cudnn: 'False'
 discriminator_adv_loss_params:
   average_by_discriminators: false
