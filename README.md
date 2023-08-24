@@ -48,6 +48,19 @@ python3 augment_binaural_speech.py --speech corpus/valid/ --ir binaural/ --out o
 python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out output_speech/test --nthreads 16
 ```
 
+## Trained Model and Test Data
+
+To donwload our trained with encoder check point at **200,000** and decoder check point at **500,000**. Run the following command
+```
+source download_model.sh
+```
+change the respective check point numbers to the variable **encoder_checkpoint**, **decoder_checkpoint** in **submit_codec_vctk.sh**.
+
+To download our test data, run the following command
+```
+
+```
+
 ## Training our Multi_AudioDec with Metric Loss
 We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
 
