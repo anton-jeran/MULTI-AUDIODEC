@@ -57,8 +57,9 @@ source download_model.sh
 change the respective check point numbers to the variable **encoder_checkpoint**, **decoder_checkpoint** in **submit_codec_vctk.sh**.
 
 To download our test data, run the following command
-```
 
+```
+source download_test_data.sh
 ```
 
 ## Training our Multi_AudioDec with Metric Loss
