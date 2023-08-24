@@ -84,10 +84,10 @@ After training for 200,000 steps, we freeze the encode, projector, quantizer and
 bash submit_codec_vctk.sh --start 1 --stop 2
 ```
 
-If you want to resume training on saved HiFi-GAN vocoder at particular step (e.g., 440,000) run the following command
+If you want to resume training on saved HiFi-GAN vocoder at particular step (e.g., 460,000) run the following command
 
 ```
-bash submit_codec_vctk.sh --start 3 --resumepoint 440000
+bash submit_codec_vctk.sh --start 3 --resumepoint 460000
 ```
 
 To test the trained model run the following command
