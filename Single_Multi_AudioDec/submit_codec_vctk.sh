@@ -38,7 +38,7 @@ stop=100 # stage to stop
 # stage 2: training vocoder from scratch
 # stage 3: testing (symAE)
 # stage 4: testing (AE + Vocoder)
-resumepoint=380000
+resumepoint=440000
 encoder_checkpoint=200000
 decoder_checkpoint=500000
 exp=exp # Folder of models
