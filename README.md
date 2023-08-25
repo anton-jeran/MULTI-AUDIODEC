@@ -18,6 +18,7 @@ librosa
 cupy-cuda11x
 torch_stoi
 sudo apt-get install p7zip-full
+7z e exp.zip  
 ```
 
 # Single Speaker Binaural Speech
