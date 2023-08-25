@@ -50,9 +50,15 @@ python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out ou
 
 ## Trained Model and Test Data
 
-To donwload our trained with encoder check point at **200,000** and decoder check point at **500,000**. Run the following command
+To download our trained with encoder check point at **200,000** and decoder check point at **500,000**. Run the following command
 ```
 source download_model.sh
+```
+change the respective check point numbers to the variable **encoder_checkpoint**, **decoder_checkpoint** in **submit_codec_vctk.sh**.
+
+To download our trained with encoder check point at **500,000** and decoder check point at **380,000**. Run the following command
+```
+source download_model_500.sh
 ```
 change the respective check point numbers to the variable **encoder_checkpoint**, **decoder_checkpoint** in **submit_codec_vctk.sh**.
 
