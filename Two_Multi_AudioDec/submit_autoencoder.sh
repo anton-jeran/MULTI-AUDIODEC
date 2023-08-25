@@ -38,7 +38,7 @@ stop=1000
 # stage 2: testing
 resumepoint=0
 encoder_checkpoint=200000
-decoder_checkpoint=240000
+decoder_checkpoint=358651
 #resumepoint=500000
 #encoder_checkpoint=500000
 #decoder_checkpoint=1000000
