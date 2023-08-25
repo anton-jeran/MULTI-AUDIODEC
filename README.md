@@ -50,7 +50,7 @@ python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out ou
 
 ## Trained Model and Test Data
 
-To download our trained with encoder check point at **200,000** and decoder check point at **500,000**. Run the following command
+To download our trained with encoder check point at **200,000** and decoder check point at **500,000** (**We tested on this model**). Run the following command
 ```
 source download_model.sh
 ```
