@@ -19,8 +19,7 @@ soundfile
 librosa
 cupy-cuda11x
 torch_stoi
-sudo apt-get install p7zip-full
-% 7z e exp.zip  
+sudo apt-get install p7zip-full  
 ```
 
 # Single Speaker Binaural Speech
