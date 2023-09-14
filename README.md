@@ -24,11 +24,11 @@ sudo apt-get install p7zip-full
 
 # Single Speaker Binaural Speech
 
-**To train and test single speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
+**To train and test single-speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
 
-## Generating Binaural RIR
+## Generating Binaural IR
 
-To generate 50,000 RIRs run the follwing code. To generate different number of RIRs, change variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
+To generate 50,000 BIRs run the following code. To generate different numbers of BIRs, change the variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
 
 ```
 python3 sim_binaural_ir.py
@@ -42,7 +42,7 @@ python3 process_speech.py
 ```
 
 
-Then make folder **output_speech** and run following command to augment binaural speech dataset
+Then make folder **output_speech** and run the following command to augment the binaural speech dataset
 
 ```
 mkdir output_speech
@@ -53,13 +53,13 @@ python3 augment_binaural_speech.py --speech corpus/test/ --ir binaural/ --out ou
 
 ## Trained Model and Test Data
 
-To download our trained with encoder check point at **200,000** and decoder check point at **500,000** (**We tested on this model**). Run the following command
+To download our trained with encoder checkpoint at **200,000** and decoder checkpoint at **500,000** (**We tested on this model**). Run the following command
 ```
 source download_model.sh
 ```
 change the respective check point numbers to the variable **encoder_checkpoint**, **decoder_checkpoint** in **submit_codec_vctk.sh**.
 
-To download our trained with encoder check point at **500,000** and decoder check point at **380,000**. Run the following command
+To download our trained with encoder checkpoint at **500,000** and decoder checkpoint at **380,000**. Run the following command
 ```
 source download_model_500.sh
 ```
@@ -71,29 +71,29 @@ To download our test data, run the following command
 source download_test_data.sh
 ```
 
-## Training our Multi_AudioDec with Metric Loss
-We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
+## Training our M3-AUDIODEC with Metric Loss
+We train our end-to-end network with only metric loss for 200,000 epochs. To train our network, run the following command 
 
 ```
 bash submit_autoencoder.sh --start 0 --stop 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
 
-We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+We have configured it to run on 4 GPUs. To run on different numbers of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 To run on different batch size, change **batch_size:** parameter (Line-193) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 
-To resume training on saved model at particular step (e.g., 200,000 steps) run the following command
+To resume training on a saved model at a particular step (e.g., 200,000 steps) run the following command
 
 ```
 bash submit_autoencoder.sh --start 1 --stop 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
 
-After training for 200,000 steps, we freeze the encode, projector, quantizer and we only train decoder with adversarial loss. To replace the simple decoder with HiFi-GAN vocoder, run the following command
+After training for 200,000 steps, we freeze the encode, projector, and quantizer and we only train the decoder with adversarial loss. To replace the simple decoder with the HiFi-GAN vocoder, run the following command
 
 ```
 bash submit_codec_vctk.sh --start 1 --stop 2
 ```
 
-If you want to resume training on saved HiFi-GAN vocoder at particular step (e.g., 460,000) run the following command
+If you want to resume training on the saved HiFi-GAN vocoder at a particular step (e.g., 460,000) run the following command
 
 ```
 bash submit_codec_vctk.sh --start 3 --resumepoint 460000
@@ -108,25 +108,25 @@ bash submit_autoencoder.sh --start 2
 
 # Two Speakers Overlapped Binaural Speech
 
-**To train and test single speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
+**To train and test single-speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
 
-## Generating Binaural RIR
+## Generating Binaural IR
 
-To generate 50,000 RIRs run the follwing code. To generate different number of RIRs, change variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
+To generate 50,000 BIRs run the following code. To generate different numbers of BIRs, change the variable **num_irs** (Line 47) in **sim_binaural_ir.py**. You can see generated Binaural RIRs under **binaural/** folder.
 
 ```
 python3 sim_binaural_ir.py
 ```
 
 ## Augement Binaural Speech Dataset
-Download VCTK or any clean speech dataset and divide into train,test and valid **e.g., corpus/train, corpus/test, corpus/valid**. To make clean speech of 2 seconds durations run the following command
+Download VCTK or any clean speech dataset and divide it into the train, test and valid **e.g., corpus/train, corpus/test, corpus/valid**. To make a clean speech of 2 seconds duration run the following command
 
 ```
 python3 process_speech.py
 ```
 
 
-Then make folder **output_speech** and run following command to augment binaural speech dataset
+Then make folder **output_speech** and run the following command to augment the binaural speech dataset
 
 ```
 mkdir output_speech
@@ -138,7 +138,7 @@ python3 augment_overlap_binaural_speech.py --speech corpus/test/ --ir binaural/ 
 
 ## Trained Model and Test Data
 
-To download our trained with encoder check point at **200,000** and decoder check point at **358,651**. Run the following command
+To download our trained with encoder checkpoint at **200,000** and decoder checkpoint at **358,651**. Run the following command
 ```
 source download_model.sh
 ```
@@ -151,17 +151,17 @@ To download our test data, run the following command
 source download_test_data.sh
 ```
 
-## Training our Multi_AudioDec with Metric Loss
-We train our end-to-end network with only metric loss for 200,000 epoch. To train our network, run the following command 
+## Training our M3-AUDIODEC with Metric Loss
+We train our end-to-end network with only metric loss for 200,000 epochs. To train our network, run the following command 
 
 ```
 bash submit_autoencoder.sh --start 0 --stop 0 --tag_name "autoencoder/symAD_vctk_48000_hop300"
 ```
 
-We have configured to run on 4 GPUs. To run on different number of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
+We have configured it to run on 4 GPUs. To run on different numbers of GPUs change the **gpus:** parameter (Line-14) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 To run on different batch size, change **batch_size:** parameter (Line-193) in **config/autoencoder/symAD_vctk_48000_hop300.yaml**
 
-To resume training on saved model at particular step (e.g., 200,000 steps) run the following command
+To resume training on the saved model at a particular step (e.g., 200,000 steps) run the following command
 
 ```
 bash submit_autoencoder.sh --start 1 --stop 1 --resumepoint 200000 --tag_name "autoencoder/symAD_vctk_48000_hop300"
