@@ -1,4 +1,4 @@
-# M3-AUDIODEC: MULTI-CHANNEL MULTI-TALKER MULTI-SPATIAL NEURAL AUDIO CODEC
+# M3-AUDIODEC: MULTI-CHANNEL MULTI-SPEAKER MULTI-SPATIAL AUDIO CODEC
 
 This is the official implementation of our binaural neural audio codec architecure of single-speaker speech signal and two-speaker overlapped speech signal. Our **M3-AUDIODEC** architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
 
