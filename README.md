@@ -4,7 +4,13 @@ This is the official implementation of our multi-channel multi-speaker multi-spa
 
 The audio demos of M3-AUDIODEC are available [**here**](https://anton-jeran.github.io/MAD/). 
 
-Our paper is available [**here**](https://arxiv.org/abs/2309.07416). 
+Our paper is available [**here**](https://arxiv.org/abs/2309.07416).
+
+# Architecture
+
+<p align="center">
+<img src="m3.png"/>
+</p> 
 
 # Requirements
 
