@@ -1,8 +1,10 @@
 # M3-AUDIODEC: MULTI-CHANNEL MULTI-SPEAKER MULTI-SPATIAL AUDIO CODEC
 
-This is the official implementation of our multi-channel multi-speaker multi-spatial neural audio codec architecture confgured for single-speaker speech signal and two-speaker overlapped speech signal. Our **M3-AUDIODEC** architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work **M3-AUDIODEC** and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
+This is the official implementation of our multi-channel multi-speaker multi-spatial neural audio codec architecture confgured for single-speaker speech signal and two-speaker overlapped speech signal. Our **M3-AUDIODEC** architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work **M3-AUDIODEC**(https://arxiv.org/abs/2309.07416) and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
 
-The audio demos of M3-AUDIODEC are available [**here**](https://anton-jeran.github.io/MAD/).
+The audio demos of M3-AUDIODEC are available [**here**](https://anton-jeran.github.io/MAD/). 
+
+Our paper is available [**here**](https://arxiv.org/abs/2309.07416). 
 
 # Requirements
 
