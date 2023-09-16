@@ -79,7 +79,7 @@ To download our test data, run the following command
 source download_test_data.sh
 ```
 
-## Training our M3-AUDIODEC with Metric Loss
+## Training and Testing
 We train our end-to-end network with only metric loss for 200,000 epochs. To train our network, run the following command 
 
 ```
@@ -159,7 +159,7 @@ To download our test data, run the following command
 source download_test_data.sh
 ```
 
-## Training our M3-AUDIODEC with Metric Loss
+## Training and Testing
 We train our end-to-end network with only metric loss for 200,000 epochs. To train our network, run the following command 
 
 ```
