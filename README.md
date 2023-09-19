@@ -180,3 +180,15 @@ To test the trained model run the following command
 ```
 bash submit_autoencoder.sh --start 2
 ```
+
+## Citations
+If you use our **M3-AUDIODEC** for your research, please consider citing
+
+```
+@article{ratnarajah2023m3,
+  title={M3-AUDIODEC: Multi-channel multi-speaker multi-spatial audio codec},
+  author={Ratnarajah, Anton and Zhang, Shi-Xiong and Luo, Yi and Yu, Dong},
+  journal={arXiv preprint arXiv:2309.07416},
+  year={2023}
+}
+```
