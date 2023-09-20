@@ -116,7 +116,7 @@ bash submit_autoencoder.sh --start 2
 
 # Two Speakers Overlapped Binaural Speech
 
-**To train and test single-speaker binaural speech go inside "Single_Multi_AudioDec/" folder.**
+**To train and test two-speaker binaural speech go inside "Two_Multi_AudioDec/" folder.**
 
 ## Generating Binaural IR
 
