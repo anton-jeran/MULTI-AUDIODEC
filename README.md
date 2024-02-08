@@ -27,6 +27,8 @@ soundfile
 librosa
 cupy-cuda11x
 torch_stoi
+tensorboardX
+pyyaml
 sudo apt-get install p7zip-full  
 ```
 
