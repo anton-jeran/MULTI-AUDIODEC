@@ -1,6 +1,6 @@
 # BANC: Towards Efficient Binaural Audio Neural Codec for Overlapping Speech
 
-This is the official implementation of our multi-channel multi-speaker multi-spatial neural audio codec architecture configured for single-speaker speech signal and two-speaker overlapped speech signal. Our [**BANC**](https://arxiv.org/abs/2309.07416) architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work [**BANC**](https://arxiv.org/abs/2309.07416) and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
+This is the official implementation of our binaural neural audio codec architecture configured for single-speaker speech signals and two-speaker overlapped speech signals. Our [**BANC**](https://arxiv.org/abs/2309.07416) architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work [**BANC**](https://arxiv.org/abs/2309.07416) and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
 
 The audio demos of BANC are available [**here**](https://anton-jeran.github.io/MAD/). 
 
