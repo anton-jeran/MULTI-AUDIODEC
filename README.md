@@ -1,8 +1,8 @@
-# M3-AUDIODEC: MULTI-CHANNEL MULTI-SPEAKER MULTI-SPATIAL AUDIO CODEC
+# BANC: Towards Efficient Binaural Audio Neural Codec for Overlapping Speech
 
-This is the official implementation of our multi-channel multi-speaker multi-spatial neural audio codec architecture configured for single-speaker speech signal and two-speaker overlapped speech signal. Our [**M3-AUDIODEC**](https://arxiv.org/abs/2309.07416) architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work [**M3-AUDIODEC**](https://arxiv.org/abs/2309.07416) and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
+This is the official implementation of our multi-channel multi-speaker multi-spatial neural audio codec architecture configured for single-speaker speech signal and two-speaker overlapped speech signal. Our [**BANC**](https://arxiv.org/abs/2309.07416) architecture is developed based on [**AUDIODEC**](https://github.com/facebookresearch/AudioDec) repository. Therefore our work is licensed under [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). When you use this repository, please consider citing our work [**BANC**](https://arxiv.org/abs/2309.07416) and  [**AUDIODEC**](https://github.com/facebookresearch/AudioDec).  
 
-The audio demos of M3-AUDIODEC are available [**here**](https://anton-jeran.github.io/MAD/). 
+The audio demos of BANC are available [**here**](https://anton-jeran.github.io/MAD/). 
 
 Our paper is available [**here**](https://arxiv.org/abs/2309.07416).
 
@@ -184,11 +184,11 @@ bash submit_autoencoder.sh --start 2
 ```
 
 ## Citations
-If you use our **M3-AUDIODEC** for your research, please consider citing
+If you use our **BANC** for your research, please consider citing
 
 ```
 @article{ratnarajah2023m3,
-  title={M3-AUDIODEC: Multi-channel multi-speaker multi-spatial audio codec},
+  title={BANC: Multi-channel multi-speaker multi-spatial audio codec},
   author={Ratnarajah, Anton and Zhang, Shi-Xiong and Yu, Dong},
   journal={arXiv preprint arXiv:2309.07416},
   year={2023}
