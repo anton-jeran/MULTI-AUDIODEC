@@ -4,7 +4,7 @@ This is the official implementation of our binaural neural audio codec architect
 
 The audio demos of BANC are available [**here**](https://anton-jeran.github.io/MAD/). 
 
-% Our paper is available [**here**](https://arxiv.org/abs/2309.07416).
+
 
 # Architecture
 
